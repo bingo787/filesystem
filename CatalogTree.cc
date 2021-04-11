@@ -3,6 +3,7 @@
 //
 #include <filesystem>
 #include <iostream>
+#include <fstream>
 #include "CatalogTree.h"
 
 std::vector<std::string> CatalogTree::GetPathRecursive(const std::string &root) {
@@ -12,21 +13,25 @@ std::vector<std::string> CatalogTree::GetPathRecursive(const std::string &root) 
   }
   return all_path;
 }
-void CatalogTree::set_current_path(const std::string &path) {
-
+bool CatalogTree::SetCurrentPath(const std::string &path) {
+  std::error_code error_code;
+  std::filesystem::current_path(path, error_code);
+  return error_code.value();
 }
-std::string CatalogTree::current_path() {
+std::string CatalogTree::CurrentPath() {
   return std::string();
 }
-void CatalogTree::CreateDirectory(const std::string &dir) {
-  std::filesystem::create_directories(dir);
+bool CatalogTree::CreateDirectory(const std::string &dir) {
+  std::cout << "create " << dir << std::endl;
+  return std::filesystem::create_directories(dir);
 }
-void CatalogTree::delete_directory(const std::string &dir) {
-
+bool CatalogTree::DeleteDirectory(const std::string &dir) {
+  return std::filesystem::remove_all(dir);
 }
-void CatalogTree::create_file(const std::string &file) {
-
+bool CatalogTree::CreateFile(const std::string &file) {
+  auto f = std::ofstream(file.c_str());
+  return f.good();
 }
-void CatalogTree::delete_file(const std::string &file) {
-
+bool CatalogTree::DeleteFile(const std::string &file) {
+  return std::filesystem::remove_all(file);
 }

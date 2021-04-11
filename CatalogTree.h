@@ -10,12 +10,12 @@
 class CatalogTree {
  public:
   std::vector<std::string> GetPathRecursive(const std::string &root);
-  void set_current_path(const std::string &path);
-  std::string current_path();
-  void CreateDirectory(const std::string &dir);
-  void delete_directory(const std::string &dir);
-  void create_file(const std::string &file);
-  void delete_file(const std::string &file);
+  bool SetCurrentPath(const std::string &path);
+  std::string CurrentPath();
+  bool CreateDirectory(const std::string &dir);
+  bool DeleteDirectory(const std::string &dir);
+  bool CreateFile(const std::string &file);
+  bool DeleteFile(const std::string &file);
 };
 
 #endif //CATALOGTREE__CATALOGTREE_H_
