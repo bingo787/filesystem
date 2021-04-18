@@ -13,9 +13,9 @@ class CatalogTree {
   bool SetCurrentPath(const std::string &path);
   std::string CurrentPath();
   bool CreateDirectory(const std::string &dir);
-  bool DeleteDirectory(const std::string &dir);
+  bool DeleteDirectoryOrFile(const std::string &dir);
   bool CreateFile(const std::string &file);
-  bool DeleteFile(const std::string &file);
+
 };
 
 #endif //CATALOGTREE__CATALOGTREE_H_
